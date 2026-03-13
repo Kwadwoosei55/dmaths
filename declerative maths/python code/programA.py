@@ -44,9 +44,15 @@ def array_read(base, index, size):
 
 def stack_frame_lines(a: int, b: int):
     #Person 5: Show stack layout and AX/BX register views#
-    pass
-
-
+    lines = []
+    lines.append("bp:  RETURN")
+    lines.append(f"bp+2 :a = {a}")
+    lines.append(f"bp+4 :b = {b}")
+    lines.append(" ")
+    lines.append(f"AX = {a}")
+    lines.append(f"BX = {b}")
+    lines.append("AX + BX = {a + b}")
+    return lines
 
 # This part handles user input and output.
 def main():

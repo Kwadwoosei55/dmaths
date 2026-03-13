@@ -52,7 +52,7 @@ def stack_frame_lines(a: int, b: int):
     lines.append(f"AX = {a}")
     lines.append(f"BX = {b}")
     lines.append("AX + BX = {a + b}")
-    return lines
+    return lines 
 
 # This part handles user input and output.
 def main():

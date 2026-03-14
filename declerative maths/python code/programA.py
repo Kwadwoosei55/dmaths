@@ -1,58 +1,66 @@
-
 from typing import Tuple
-
 
 memory = {}
 
-
-
 def convert(n: int) -> Tuple[str, str, int]:
-    #Person 2: Decimal to Hex, 16-bit Binary, and Signed16#
+    # Person 1: Decimal to Hex, 16-bit Binary, and Signed16
     pass
+
 
 def pack_u16_le(n: int):
-    #Person 3: Pack integer into two Little-endian bytes#
+    # Person 2: Pack integer into two Little-endian bytes
     pass
+
 
 def unpack_u16_le(low: int, high: int):
-    #Person 3: Unpack two Little-endian bytes back to integer#
+    # Person 2: Unpack two Little-endian bytes back to integer
     pass
+
 
 def memory_write(addr: int, byte: int):
-    #Person 3: Write a single byte to the 'memory' dictionary#
+    # Person 2: Write a single byte to the memory dictionary
     pass
+
 
 def memory_read(addr: int):
-    #Person 3: Read a single byte from the 'memory' dictionary#
+    # Person 2: Read a single byte from the memory dictionary
     pass
+
 
 def ascii_dump_lines(s: str, base: int = 0x1000):
-    #Person 4: Convert string to hex bytes with null terminator#
+    # Person 3: Convert string to hex ASCII bytes with null terminator
     pass
+
 
 def element_address(base: int, index: int, size: int) -> int:
-    #Person 4: Calculate address: base + (index * size)#
+    # Person 4: Calculate address: base + (index * size)
     return base + index * size
 
+
 def array_write(base, index, size, value):
-    #Person 4: Write value to memory at calculated array index#
+    # Person 4: Write value to memory at calculated array index
     pass
+
 
 def array_read(base, index, size):
-    #Person 4: Read value from memory at calculated array index#
+    # Person 4: Read value from memory at calculated array index
     pass
 
+
 def stack_frame_lines(a: int, b: int):
-    #Person 5: Show stack layout and AX/BX register views#
-    lines = []
-    lines.append("bp:  RETURN")
-    lines.append(f"bp+2 :a = {a}")
-    lines.append(f"bp+4 :b = {b}")
-    lines.append(" ")
-    lines.append(f"AX = {a}")
-    lines.append(f"BX = {b}")
-    lines.append("AX + BX = {a + b}")
-    return lines 
+    # Person 5: Show stack layout and AX/BX register views
+        lines = []
+        lines.append("bp:  RETURN")
+        lines.append(f"bp+2 :a = {a}")
+        lines.append(f"bp+4 :b = {b}")
+        lines.append(" ")
+        lines.append(f"AX = {a}")
+        lines.append(f"BX = {b}")
+        lines.append(f"AX + BX = {a + b}")
+        return lines 
+    
+
+
 
 # This part handles user input and output.
 def main():
@@ -81,17 +89,14 @@ def main():
             addr_str = input("Enter memory address (e.g., 0x1000): ")
             addr = int(addr_str, 0)
 
-            # Process packing
             low, high = pack_u16_le(n)
             print(f"LOW BYTE  = {hex(low) if low is not None else None}")
             print(f"HIGH BYTE = {hex(high) if high is not None else None}")
 
-            # Store in memory
             memory_write(addr, low)
             memory_write(addr + 1, high)
             print(f"Stored in MEM[{hex(addr)}] and MEM[{hex(addr+1)}]")
 
-            # Read back and Unpack
             rlow = memory_read(addr)
             rhigh = memory_read(addr + 1)
             print(f"READ-BACK = {unpack_u16_le(rlow, rhigh)}")
@@ -134,6 +139,7 @@ def main():
 
         else:
             print("Invalid option. Please choose 0–5.")
+
 
 if __name__ == "__main__":
     main()

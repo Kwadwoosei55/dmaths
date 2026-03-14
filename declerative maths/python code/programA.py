@@ -29,8 +29,28 @@ def memory_read(addr: int):
 
 def ascii_dump_lines(s: str, base: int = 0x1000):
     # Person 3: Convert string to hex ASCII bytes with null terminator
-    pass
+    if len(s) > 10:
+        return ["Error: String must only contain 10 charcters or fewer."]
+    
+    lines = []
+    address = bass 
+    
+    for ch in s:
+        ascii_value = ord(ch)
+        memory[address] = ascii_value
+        lines.append(f20x{address:04X} : 0x{ascii_value:02X}")
+        address += 1
+        
+    memory[address] = 0 
+    lines.append(f"0x{address:04x} : 0x00")
 
+    length = 0 
+    scan_address = base 
+    while memory.get(scan_address, 0) != 0:
+        length += 1
+    lines .append(f"LENGTH (until 0x00) = {length}")
+
+    return lines
 
 def element_address(base: int, index: int, size: int) -> int:
     # Person 4: Calculate address: base + (index * size)
